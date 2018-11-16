@@ -11,9 +11,9 @@ namespace Challenge_2
     {
         private Queue<Claim> _listOfClaimItems = new Queue<Claim>();
 
-        public void AddItemToMenu(Claim contents)
+        public void AddItemToMenu(Claim claim )
         {
-            _listOfClaimItems.Enqueue(contents);
+            _listOfClaimItems.Enqueue(claim);
         }
 
         public Queue<Claim> GetContentList()
