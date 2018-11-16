@@ -24,5 +24,10 @@ namespace Challenge_4
         {
             return _badgePairedToDoors;
         }
+        public void UpdateBadgeInList(Badge info)
+        {
+            _badgePairedToDoors[info.BadgeId] = info.DoorNames;
+        }
+
     }
 }

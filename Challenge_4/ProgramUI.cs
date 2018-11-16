@@ -108,11 +108,11 @@ namespace Challenge_4
         }
         public void UpdateDoors()
         {
-            Dictionary<int, List<string>> badges = new Dictionary<int, List<string>>();
-            List<string> doors = new List<string>();
-
             Console.WriteLine("Which badge # do you want to update?");
             var id = int.Parse(Console.ReadLine());
+            Dictionary<int, List<string>> badges = _badgeRepo.ShowList();
+
+            List<string> doors = badges[id];
             bool isRunning = true;
             while (isRunning)
             {
@@ -120,7 +120,7 @@ namespace Challenge_4
                 string answer = Console.ReadLine();
                 if (answer == "y")
                 {
-                    Console.WriteLine("What door do you want to remove?");
+                    Console.WriteLine("Enter the door that this badge can no longer access: ");
                     var door = Console.ReadLine();
                     doors.Remove(door);
                 }
@@ -133,7 +133,7 @@ namespace Challenge_4
                 if (reply == "y")
                 {
                     isRunning = true;
-                    Console.WriteLine("Enter the door that this badge can no longer access:");
+                    Console.WriteLine("Enter another door that this badge can no longer access:");
                     var doorTwo = Console.ReadLine();
                     doors.Remove(doorTwo);
                 }
@@ -152,8 +152,7 @@ namespace Challenge_4
                 {
                     Console.WriteLine("Enter the door that this badge can access: ");
                     var doorThree = Console.ReadLine();
-                    //doors.Add(doorThree);
-
+                    doors.Add(doorThree);
                 }
                 else
                 {
@@ -177,7 +176,7 @@ namespace Challenge_4
             }
             Badge newBadge = new Badge(id, doors);
 
-            _badgeRepo.AddBadgeToList(newBadge);
+            _badgeRepo.UpdateBadgeInList(newBadge);
 
         }
         public void DeleteBadge()
